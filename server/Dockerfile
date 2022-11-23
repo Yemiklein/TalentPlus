@@ -8,6 +8,6 @@ RUN npm install
 
 RUN npm run build
 
-EXPOSE 5000
+EXPOSE 5555
 
 CMD [ "node", "index.js" ]

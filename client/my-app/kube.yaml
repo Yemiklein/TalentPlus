@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  "react-client"
+  namespace: ms
+  labels:
+    app:  "react-client"
+spec:
+  selector:
+  matchLabels:
+      app: "react-client"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  "react-client"
+    spec:
+      containers:
+      - name:  "react-client"
+        image:  yemrad/client
+        ports:
+        - containerPort:  3000
+          name:  "react-client"
+       
+       
+---
+
+
+apiVersion: v1
+ kind: Service
+  metadata:
+  name: client
+  namespace: ms
+spec:
+  selector:
+    app: react-client
+  type: NodePort
+  ports:
+  - name: client
+    port: 3000
+    targetPort: 3000
+   
+

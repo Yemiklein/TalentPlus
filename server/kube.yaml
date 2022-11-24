@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  clients
+  name:  backend
   namespace: ms
   labels:
-    app:  clients
+    app:  backend
 spec:
   selector:
     matchLabels:
-      app: clients
+      app: backend
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,29 +18,30 @@ spec:
   template:
     metadata:
       labels:
-        app:  clients
+        app:  backend
     spec:
       containers:
-      - name:  clients
-        image:  yemrad/client
+      - name:  backend
+        image:  yemrad/backend
         ports:
-        - containerPort:  3000
-          name:  clients
+        - containerPort:  5555
+          name:  backend
 ---
 
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: clients
+  name: backend
   namespace: ms
 spec:
   selector:
-    app: clients
+    app: backend
   type: NodePort
   ports:
-  - name: myjob
-    port: 3000
-    targetPort: 5000
-    nodePort: 30002
+  - name: backend
+    protocol: TCP
+    port: 5555
+    targetPort: 5555
+    nodePort: 30001
 ---

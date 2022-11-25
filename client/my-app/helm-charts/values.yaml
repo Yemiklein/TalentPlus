@@ -1,0 +1,13 @@
+replicaCount: 1
+image:
+  repository: yemrad/client
+  pullPolicy: IfNotPresent
+service:
+  type: NodePort
+  port: 3000
+  name: client
+  targetport: 3000
+
+container:
+  name: clients  
+

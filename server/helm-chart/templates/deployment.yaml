@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  {{ .Release.Name }} 
+  name:  {{- ".Release.Name" }} 
   namespace: ms
   labels:
        {{- include "helm-charts.labels" . |
@@ -29,7 +29,7 @@ spec:
         imagePullPolicy:  {{ .Values.image.pullPolicy }}
         ports:
         - containerPort:  {{ .Values.service.port }}
-          name:  {{ .Values.container.name }}
+         name:  {{ .Values.container.name }}
           targetPort:  {{ .Values.service.targetport }}
           affinity:
        {{- toYaml .Values.cpa | nindent 8 }}

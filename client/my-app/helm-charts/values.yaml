@@ -5,7 +5,7 @@ image:
 service:
   type: NodePort
   port: 3000
-  name: clients
+  Name: clients
   targetport: 3000
 
 container:

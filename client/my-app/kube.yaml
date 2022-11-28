@@ -23,9 +23,9 @@ spec:
       containers:
       - name:  clients
         image:  yemrad/client
-        ports:
-        - containerPort:  3000
-          name:  clients
+        ports:  3000
+      - containerPort:  3000
+         name:  clients
 ---
 
 
